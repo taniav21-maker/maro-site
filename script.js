@@ -278,6 +278,19 @@
     });
   }
 
+  /* ===== Музыка студии: играет при открытии «Философии» ===== */
+  var studioAudio = document.getElementById('studio-audio');
+  if (studioAudio) {
+    var playStudioMusic = function () {
+      if (studioAudio.paused) {
+        studioAudio.play().catch(function () {});
+      }
+    };
+    document.querySelectorAll('a[href="#philosophy"]').forEach(function (link) {
+      link.addEventListener('click', playStudioMusic);
+    });
+  }
+
   /* ===== Плавная прокрутка для якорей с учётом шапки ===== */
   document.querySelectorAll('a[href^="#"]').forEach(function (link) {
     if (link.id === 'footer-quiz') return;
