@@ -10,7 +10,7 @@
    */
   var CONFIG = {
     sheetsUrl: 'https://script.google.com/macros/s/AKfycbwVhvPY-y2NNfQvJ4sU6au-MhwCrMh9pi55ONX1H_jlEWWBk-RHjfrcmELAPm_Z7REE/exec',
-    emailTo: 'bel.u@mail.ru'
+    emailTo: 'tambov-21@yandex.ru'
   };
 
   function sendLead(data) {
