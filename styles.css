@@ -245,6 +245,9 @@ h1 em, h2 em { color: var(--accent); }
 .hero-photo figure {
   position: relative;
   height: min(72vh, 640px);
+  aspect-ratio: 576 / 1280;
+  max-width: 100%;
+  margin-inline: auto;
   overflow: hidden;
 }
 
