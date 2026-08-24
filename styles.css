@@ -1076,7 +1076,8 @@ h1 em, h2 em { color: var(--accent); }
   margin-bottom: 20px;
 }
 
-.modal-body input {
+.modal-body input,
+.modal-body textarea {
   width: 100%;
   margin-top: 8px;
   padding: 13px 0;
@@ -1090,7 +1091,21 @@ h1 em, h2 em { color: var(--accent); }
   transition: border-color 0.3s ease;
 }
 
-.modal-body input:focus { border-color: var(--accent); }
+.modal-body textarea {
+  resize: vertical;
+  min-height: 64px;
+  line-height: 1.5;
+}
+
+.modal-body input:focus,
+.modal-body textarea:focus { border-color: var(--accent); }
+
+.form-optional {
+  text-transform: none;
+  letter-spacing: 0.04em;
+  font-weight: 400;
+  opacity: 0.55;
+}
 
 .modal-body .btn { margin-top: 6px; }
 

@@ -29,8 +29,9 @@
           _subject: 'Новая заявка M.A.R.O. — подборка за 15 минут',
           _template: 'box',
           'Имя': data.first_name,
-          'Фамилия': data.last_name,
+          'Фамилия': data.last_name || '—',
           'Email клиента': data.email,
+          'Комментарий': data.comment || '—',
           'Источник': data.source
         })
       }));
@@ -137,6 +138,7 @@
         first_name: signupForm.elements.first_name.value.trim(),
         last_name: signupForm.elements.last_name.value.trim(),
         email: signupForm.elements.email.value.trim(),
+        comment: signupForm.elements.comment.value.trim(),
         source: 'signup-form'
       };
       sendLead(data);

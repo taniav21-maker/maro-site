@@ -449,11 +449,14 @@
         <label>Имя
           <input type="text" name="first_name" placeholder="Ваше имя" required>
         </label>
-        <label>Фамилия
-          <input type="text" name="last_name" placeholder="Ваша фамилия" required>
+        <label>Фамилия <span class="form-optional">по желанию</span>
+          <input type="text" name="last_name" placeholder="Ваша фамилия">
         </label>
         <label>Email
           <input type="email" name="email" placeholder="you@example.com" required>
+        </label>
+        <label>Комментарии <span class="form-optional">по желанию</span>
+          <textarea name="comment" rows="3" placeholder="Опишите ваш повод, пожелания к украшению…"></textarea>
         </label>
         <button type="submit" class="btn btn-dark btn-lg btn-block">Отправить заявку</button>
         <p class="form-note">Нажимая кнопку, вы соглашаетесь на обработку данных.</p>
