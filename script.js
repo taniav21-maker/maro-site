@@ -37,7 +37,7 @@
       });
     } else if (CONFIG.method === 'telegram-direct' && CONFIG.telegramBotToken) {
       var text = encodeURIComponent(
-        'Заявка MARO\nИмя: ' + data.first_name +
+        'Заявка M.A.R.O.\nИмя: ' + data.first_name +
         '\nФамилия: ' + data.last_name +
         '\nEmail: ' + data.email +
         '\nИсточник: ' + data.source
@@ -46,7 +46,7 @@
         '/sendMessage?chat_id=' + CONFIG.telegramChatId + '&text=' + text);
     } else {
       p = Promise.resolve();
-      if (window.console) console.log('MARO lead (demo mode):', data);
+      if (window.console) console.log('M.A.R.O. lead (demo mode):', data);
     }
     return p;
   }
