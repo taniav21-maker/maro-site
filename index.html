@@ -96,46 +96,30 @@
           <h2>Категории украшений M.A.R.O.</h2>
         </div>
 
-        <div class="tiles-grid">
-          <a href="#offer" class="tile tile-lg reveal">
-            <img src="img/cat-braslety.jpg" alt="Авторские браслеты M.A.R.O." loading="lazy">
-            <span class="tile-mask"></span>
-            <span class="tile-info">
-              <span class="tile-label">Браслеты</span>
-              <span class="tile-more">Смотреть →</span>
-            </span>
+        <div class="cats-grid">
+          <a href="#" class="cat-card reveal" data-gallery="braslety">
+            <img src="img/gal/braslety/IMG_1707.jpg" alt="Авторские браслеты M.A.R.O." loading="lazy">
+            <span class="cat-caption"><span class="cat-name">Браслеты</span><span class="cat-count">3 фото</span></span>
           </a>
-          <a href="#offer" class="tile reveal reveal-delay-1">
-            <img src="img/cat-kolye.jpg" alt="Авторские колье и цепочки M.A.R.O." loading="lazy">
-            <span class="tile-mask"></span>
-            <span class="tile-info">
-              <span class="tile-label">Колье и цепочки</span>
-              <span class="tile-more">Смотреть →</span>
-            </span>
+          <a href="#" class="cat-card reveal reveal-delay-1" data-gallery="kolye-tsepochki">
+            <img src="img/gal/kolye-tsepochki/IMG_1702.jpg" alt="Авторские колье и цепочки M.A.R.O." loading="lazy">
+            <span class="cat-caption"><span class="cat-name">Колье и цепочки</span><span class="cat-count">4 фото</span></span>
           </a>
-          <a href="#offer" class="tile reveal reveal-delay-1">
-            <img src="img/cat-koltsa-sergi.jpg" alt="Авторские кольца и серьги M.A.R.O." loading="lazy">
-            <span class="tile-mask"></span>
-            <span class="tile-info">
-              <span class="tile-label">Кольца и серьги</span>
-              <span class="tile-more">Смотреть →</span>
-            </span>
+          <a href="#" class="cat-card reveal" data-gallery="koltsa-sergi">
+            <img src="img/gal/koltsa-sergi/IMG_1709.jpg" alt="Авторские кольца и серьги M.A.R.O." loading="lazy">
+            <span class="cat-caption"><span class="cat-name">Кольца и серьги</span><span class="cat-count">3 фото</span></span>
           </a>
-          <a href="#offer" class="tile tile-lg reveal">
-            <img src="img/cat-muzhskie.jpg" alt="Мужские аксессуары M.A.R.O." loading="lazy">
-            <span class="tile-mask"></span>
-            <span class="tile-info">
-              <span class="tile-label">Мужские аксессуары</span>
-              <span class="tile-more">Смотреть →</span>
-            </span>
+          <a href="#" class="cat-card reveal reveal-delay-1" data-gallery="muzhskie-aksessuary">
+            <img src="img/gal/muzhskie-aksessuary/IMG_1715.jpg" alt="Мужские аксессуары M.A.R.O." loading="lazy">
+            <span class="cat-caption"><span class="cat-name">Мужские аксессуары</span><span class="cat-count">5 фото</span></span>
           </a>
-          <a href="#offer" class="tile tile-wide reveal">
-            <img src="img/cat-chetki.jpg" alt="Авторские чётки и подвесы M.A.R.O." loading="lazy">
-            <span class="tile-mask"></span>
-            <span class="tile-info">
-              <span class="tile-label">Чётки и подвесы</span>
-              <span class="tile-more">Смотреть →</span>
-            </span>
+          <a href="#" class="cat-card reveal" data-gallery="podvesy">
+            <img src="img/gal/podvesy/IMG_1713.jpg" alt="Авторские подвесы M.A.R.O." loading="lazy">
+            <span class="cat-caption"><span class="cat-name">Подвесы</span><span class="cat-count">1 фото</span></span>
+          </a>
+          <a href="#" class="cat-card reveal reveal-delay-1" data-gallery="chetki">
+            <img src="img/gal/chetki/IMG_1699.jpg" alt="Авторские чётки M.A.R.O." loading="lazy">
+            <span class="cat-caption"><span class="cat-name">Чётки</span><span class="cat-count">3 фото</span></span>
           </a>
         </div>
       </div>
@@ -492,6 +476,17 @@
         </div>
       </div>
     </div>
+  </div>
+
+  <div class="lightbox" id="lightbox" aria-hidden="true">
+    <div class="lightbox-backdrop" data-close></div>
+    <figure class="lightbox-body" role="dialog" aria-modal="true" aria-label="Просмотр фотографии">
+      <button class="lightbox-close" type="button" data-close aria-label="Закрыть">✕</button>
+      <button class="lightbox-nav lightbox-prev" type="button" aria-label="Предыдущее фото">←</button>
+      <img class="lightbox-img" src="" alt="">
+      <button class="lightbox-nav lightbox-next" type="button" aria-label="Следующее фото">→</button>
+      <figcaption class="lightbox-caption"><span id="lightbox-title"></span> · <span id="lightbox-counter"></span></figcaption>
+    </figure>
   </div>
 
   <script src="script.js"></script>

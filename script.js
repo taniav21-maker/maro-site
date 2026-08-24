@@ -291,6 +291,71 @@
     });
   }
 
+  /* ===== Галереи категорий (лайтбокс) ===== */
+  var GALLERIES = {
+    'braslety': { title: 'Браслеты', photos: ['img/gal/braslety/IMG_1706.jpg', 'img/gal/braslety/IMG_1707.jpg', 'img/gal/braslety/IMG_1708.jpg'] },
+    'kolye-tsepochki': { title: 'Колье и цепочки', photos: ['img/gal/kolye-tsepochki/IMG_1702.jpg', 'img/gal/kolye-tsepochki/IMG_1703.jpg', 'img/gal/kolye-tsepochki/IMG_1704.jpg', 'img/gal/kolye-tsepochki/IMG_1705.jpg'] },
+    'koltsa-sergi': { title: 'Кольца и серьги', photos: ['img/gal/koltsa-sergi/IMG_1709.jpg', 'img/gal/koltsa-sergi/IMG_1710.jpg', 'img/gal/koltsa-sergi/IMG_1712.jpg'] },
+    'muzhskie-aksessuary': { title: 'Мужские аксессуары', photos: ['img/gal/muzhskie-aksessuary/IMG_1715.jpg', 'img/gal/muzhskie-aksessuary/IMG_1716.jpg', 'img/gal/muzhskie-aksessuary/IMG_1717.jpg', 'img/gal/muzhskie-aksessuary/IMG_1718.jpg', 'img/gal/muzhskie-aksessuary/IMG_1719.jpg'] },
+    'podvesy': { title: 'Подвесы', photos: ['img/gal/podvesy/IMG_1713.jpg'] },
+    'chetki': { title: 'Чётки', photos: ['img/gal/chetki/IMG_1699.jpg', 'img/gal/chetki/IMG_1700.jpg', 'img/gal/chetki/IMG_1701.jpg'] }
+  };
+
+  var lightbox = document.getElementById('lightbox');
+  var lbImg = document.querySelector('.lightbox-img');
+  var lbTitle = document.getElementById('lightbox-title');
+  var lbCounter = document.getElementById('lightbox-counter');
+  var lbPrev = document.querySelector('.lightbox-prev');
+  var lbNext = document.querySelector('.lightbox-next');
+  var lbIndex = 0;
+  var lbPhotos = [];
+  var lbCurrentTitle = '';
+
+  function showPhoto() {
+    lbImg.src = lbPhotos[lbIndex];
+    lbCounter.textContent = (lbIndex + 1) + ' / ' + lbPhotos.length;
+    var single = lbPhotos.length < 2;
+    lbPrev.classList.toggle('hidden', single);
+    lbNext.classList.toggle('hidden', single);
+  }
+
+  function openGallery(key) {
+    var g = GALLERIES[key];
+    if (!g) return;
+    lbPhotos = g.photos;
+    lbCurrentTitle = g.title;
+    lbTitle.textContent = g.title;
+    lbIndex = 0;
+    showPhoto();
+    openModal(lightbox);
+  }
+
+  if (lightbox) {
+    document.querySelectorAll('[data-gallery]').forEach(function (card) {
+      card.addEventListener('click', function (e) {
+        e.preventDefault();
+        openGallery(card.getAttribute('data-gallery'));
+      });
+    });
+    lbPrev.addEventListener('click', function () {
+      lbIndex = (lbIndex - 1 + lbPhotos.length) % lbPhotos.length;
+      showPhoto();
+    });
+    lbNext.addEventListener('click', function () {
+      lbIndex = (lbIndex + 1) % lbPhotos.length;
+      showPhoto();
+    });
+    lightbox.querySelectorAll('[data-close]').forEach(function (el) {
+      el.addEventListener('click', function () { closeModal(lightbox); });
+    });
+    document.addEventListener('keydown', function (e) {
+      if (!lightbox.classList.contains('open')) return;
+      if (e.key === 'Escape') closeModal(lightbox);
+      if (e.key === 'ArrowLeft' && lbPhotos.length > 1) lbPrev.click();
+      if (e.key === 'ArrowRight' && lbPhotos.length > 1) lbNext.click();
+    });
+  }
+
   /* ===== Плавная прокрутка для якорей с учётом шапки ===== */
   document.querySelectorAll('a[href^="#"]').forEach(function (link) {
     if (link.id === 'footer-quiz') return;
