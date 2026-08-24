@@ -112,25 +112,13 @@ h1 em, h2 em { color: var(--accent); }
   color: var(--ink);
 }
 
-.logo-mark { width: 30px; height: 30px; color: var(--accent); }
+.logo-svg { width: 76px; height: auto; display: block; }
 
-.logo-word {
-  font-family: var(--serif);
-  font-size: 16px;
-  font-weight: 700;
-  letter-spacing: 0.3em;
-  margin-right: -0.3em;
-  white-space: nowrap;
-}
-
-.logo-sub {
-  font-family: var(--serif);
-  font-size: 10px;
+.logo-text {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 29.13px;
   font-weight: 600;
-  letter-spacing: 0.34em;
-  margin-right: -0.34em;
-  white-space: nowrap;
-  color: var(--accent);
+  letter-spacing: 2.5px;
 }
 
 .nav-links { display: flex; gap: 38px; list-style: none; }
@@ -936,8 +924,6 @@ h1 em, h2 em { color: var(--accent); }
 }
 
 .footer-brand .logo { color: var(--paper); }
-.footer-brand .logo-mark,
-.footer-brand .logo-sub { color: var(--gold); }
 .footer-brand p { color: rgba(255, 253, 249, 0.7); font-size: 14px; margin-top: 18px; max-width: 280px; }
 
 .footer-col { display: flex; flex-direction: column; gap: 12px; }
