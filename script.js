@@ -4,51 +4,42 @@
   var prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   /* ===== НАСТРОЙКА СБОРА ЗАЯВОК =====
-   * method: 'none' | 'googlesheets' | 'formspree' | 'telegram' | 'telegram-direct'
-   * После развёртывания Apps Script вставьте URL веб-приложения в sheetsUrl.
+   * Заявки пишутся в Google-таблицу И дублируются письмом на emailTo (FormSubmit).
+   * При первой заявке на emailTo придёт письмо «Activate FormSubmit» —
+   * нужно один раз перейти по ссылке из него, после чего письма будут приходить.
    */
   var CONFIG = {
-    method: 'googlesheets',
     sheetsUrl: 'https://script.google.com/macros/s/AKfycbwVhvPY-y2NNfQvJ4sU6au-MhwCrMh9pi55ONX1H_jlEWWBk-RHjfrcmELAPm_Z7REE/exec',
-    formspreeUrl: '',
-    telegramUrl: '',
-    telegramBotToken: '',
-    telegramChatId: ''
+    emailTo: 'bel.u@mail.ru'
   };
 
   function sendLead(data) {
-    var p;
-    if (CONFIG.method === 'googlesheets' && CONFIG.sheetsUrl) {
-      p = fetch(CONFIG.sheetsUrl, {
+    var jobs = [];
+    if (CONFIG.sheetsUrl) {
+      jobs.push(fetch(CONFIG.sheetsUrl, {
         method: 'POST',
         body: JSON.stringify(data)
-      });
-    } else if (CONFIG.method === 'formspree' && CONFIG.formspreeUrl) {
-      p = fetch(CONFIG.formspreeUrl, {
+      }));
+    }
+    if (CONFIG.emailTo) {
+      jobs.push(fetch('https://formsubmit.co/ajax/' + CONFIG.emailTo, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-        body: JSON.stringify(data)
-      });
-    } else if (CONFIG.method === 'telegram' && CONFIG.telegramUrl) {
-      p = fetch(CONFIG.telegramUrl, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(data)
-      });
-    } else if (CONFIG.method === 'telegram-direct' && CONFIG.telegramBotToken) {
-      var text = encodeURIComponent(
-        'Заявка M.A.R.O.\nИмя: ' + data.first_name +
-        '\nФамилия: ' + data.last_name +
-        '\nEmail: ' + data.email +
-        '\nИсточник: ' + data.source
-      );
-      p = fetch('https://api.telegram.org/bot' + CONFIG.telegramBotToken +
-        '/sendMessage?chat_id=' + CONFIG.telegramChatId + '&text=' + text);
-    } else {
-      p = Promise.resolve();
-      if (window.console) console.log('M.A.R.O. lead (demo mode):', data);
+        body: JSON.stringify({
+          _subject: 'Новая заявка M.A.R.O. — подборка за 15 минут',
+          _template: 'box',
+          'Имя': data.first_name,
+          'Фамилия': data.last_name,
+          'Email клиента': data.email,
+          'Источник': data.source
+        })
+      }));
     }
-    return p;
+    if (!jobs.length) {
+      if (window.console) console.log('M.A.R.O. lead (demo mode):', data);
+      return Promise.resolve();
+    }
+    return Promise.allSettled(jobs);
   }
 
   /* ===== Reveal при скролле ===== */
