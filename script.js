@@ -147,110 +147,9 @@
     });
   }
 
-  /* ===== Модалка теста ===== */
-  var quizModal = document.getElementById('quiz-modal');
-  var quizEl = document.getElementById('quiz');
-  var questionEl = document.getElementById('quiz-question');
-  var optionsEl = document.getElementById('quiz-options');
-  var resultEl = document.getElementById('quiz-result');
-  var barEl = document.getElementById('quiz-bar');
-  var typeEl = document.getElementById('quiz-type');
-  var descEl = document.getElementById('quiz-desc');
-
-  var questions = [
-    {
-      q: 'Какое украшение вам ближе?',
-      options: ['Тонкая минималистичная цепочка', 'Крупный камень неправильной формы', 'Тёплая латунь вместо холодного серебра', 'Яркий акцентный кулон']
-    },
-    {
-      q: 'С чем ассоциируется ваш момент?',
-      options: ['Новая глава', 'Запоминание важной даты', 'Подарок близкому', 'Просто «моё» настроение']
-    },
-    {
-      q: 'Как вы носите украшения?',
-      options: ['Каждый день, почти не снимаю', 'По настроению и поводу', 'Только значимые вещи', 'Люблю менять и сочетать']
-    },
-    {
-      q: 'Что для вас главное?',
-      options: ['Уникальность — такой вещи больше нет', 'Смысл и история', 'Качество и ручная работа', 'Скорость изготовления']
-    }
-  ];
-
-  var types = [
-    { t: 'Тонкий минимализм', d: 'Вам подойдут лаконичные цепочки и геометрия — вещи, которые говорят «мне не нужно доказывать».' },
-    { t: 'Смелый характер', d: 'Крупные камни неправильной формы — вы не вписываетесь в рамки, и это ваш стиль.' },
-    { t: 'Тёплая натура', d: 'Латунь, янтарь и мягкие тона — вы за живое, а не за идеальное.' },
-    { t: 'Яркий акцент', d: 'Акцентные кулоны и авторские формы — украшение, которое начинает разговор.' }
-  ];
-
-  var currentQuestion = 0;
-  var answers = [];
-
-  var openQuiz = function () {
-    openModal(quizModal);
-    currentQuestion = 0;
-    answers = [];
-    resultEl.hidden = true;
-    quizEl.hidden = false;
-    renderQuestion();
-  };
-
-  function renderQuestion() {
-    var item = questions[currentQuestion];
-    questionEl.textContent = item.q;
-    optionsEl.innerHTML = '';
-    barEl.style.width = (currentQuestion / questions.length) * 100 + '%';
-
-    item.options.forEach(function (opt) {
-      var btn = document.createElement('button');
-      btn.type = 'button';
-      btn.className = 'quiz-option';
-      btn.textContent = opt;
-      btn.addEventListener('click', function () {
-        answers.push(opt);
-        if (currentQuestion + 1 < questions.length) {
-          currentQuestion++;
-          renderQuestion();
-        } else {
-          showResult();
-        }
-      });
-      optionsEl.appendChild(btn);
-    });
-  }
-
-  function showResult() {
-    barEl.style.width = '100%';
-    var idx = hashString(answers.join('|')) % types.length;
-    typeEl.textContent = types[idx].t;
-    descEl.textContent = types[idx].d;
-    quizEl.hidden = true;
-    resultEl.hidden = false;
-  }
-
-  function hashString(str) {
-    var h = 0;
-    for (var i = 0; i < str.length; i++) {
-      h = (h << 5) - h + str.charCodeAt(i);
-      h |= 0;
-    }
-    return Math.abs(h);
-  }
-
-  var quizOpen = document.getElementById('quiz-open');
-  if (quizOpen) quizOpen.addEventListener('click', openQuiz);
-
-  var footerQuiz = document.getElementById('footer-quiz');
-  if (footerQuiz) footerQuiz.addEventListener('click', function (e) { e.preventDefault(); openQuiz(); });
-
-  quizModal.querySelectorAll('[data-close]').forEach(function (el) {
-    el.addEventListener('click', function () { closeModal(quizModal); });
-  });
-
   document.addEventListener('keydown', function (e) {
     if (e.key !== 'Escape') return;
     if (signupModal.classList.contains('open')) closeModal(signupModal);
-    if (quizModal.classList.contains('open')) closeModal(quizModal);
   });
 
   /* ===== Подписка на рассылку ===== */
@@ -351,7 +250,6 @@
 
   /* ===== Плавная прокрутка для якорей с учётом шапки ===== */
   document.querySelectorAll('a[href^="#"]').forEach(function (link) {
-    if (link.id === 'footer-quiz') return;
     link.addEventListener('click', function (e) {
       var id = link.getAttribute('href');
       if (id.length < 2) return;

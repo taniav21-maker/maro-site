@@ -269,23 +269,6 @@
       </div>
     </section>
 
-    <section class="section section-quiz">
-      <div class="container">
-        <div class="quiz-block reveal" data-parallax="0.1">
-          <span class="kicker">Тест за 30 секунд</span>
-          <h2>Не знаете, какое украшение ваше?</h2>
-          <p class="quiz-text"><b>4 вопроса</b> — и мы покажем то, что совпадёт с вашим характером и моментом.</p>
-          <button type="button" class="btn btn-dark btn-xl" id="quiz-open">
-            Что бы выбрал ты? <span class="btn-arrow">Пройти тест →</span>
-          </button>
-          <p class="quiz-note">
-            Без регистрации и предоплаты. Результат + подборка 3 изделий придут в Telegram.
-            Не зацепит — просто закроете. Ничего не навязываем.
-          </p>
-        </div>
-      </div>
-    </section>
-
     <section class="section" id="reviews">
       <div class="container">
         <div class="section-head reveal">
@@ -381,6 +364,284 @@
 
   </main>
 
+  <section class="section" id="quiz">
+    <div class="container">
+      <!-- MARO: психологический тест (4 вопроса) -->
+      <div id="maro-quiz" aria-label="Психологический тест"></div>
+    </div>
+  </section>
+
+  <style>
+    #maro-quiz { max-width: 760px; margin: 0 auto; color: #17130f; font-family: inherit; }
+    #maro-quiz * { box-sizing: border-box; }
+    #maro-quiz .mq-card { background: #fffdf9; border: 1px solid #eadfce; padding: 32px; }
+    #maro-quiz .mq-kicker { text-transform: uppercase; letter-spacing: .12em; font-size: 12px; color: #8c7857; margin-bottom: 12px; }
+    #maro-quiz .mq-title { margin: 0 0 12px; font-size: 34px; line-height: 1.08; font-weight: 600; }
+    #maro-quiz .mq-title-small { font-size: 28px; }
+    #maro-quiz .mq-text { margin: 0 0 24px; color: #5e5548; font-size: 17px; line-height: 1.5; }
+    #maro-quiz .mq-top { display: flex; justify-content: space-between; align-items: center; gap: 16px; margin-bottom: 12px; }
+    #maro-quiz .mq-count { font-size: 13px; color: #8c7857; }
+    #maro-quiz .mq-link { background: none; border: 0; padding: 0; font: inherit; color: #8c7857; text-decoration: underline; cursor: pointer; }
+    #maro-quiz .mq-progress { height: 2px; background: #eadfd0; margin: 0 0 24px; }
+    #maro-quiz .mq-progress span { display: block; height: 100%; background: #17130f; transition: width .25s ease; }
+    #maro-quiz .mq-answers { display: grid; gap: 12px; }
+    #maro-quiz .mq-answer { width: 100%; text-align: left; padding: 18px 20px; border: 1px solid #d8c8ae; background: #fff; font-size: 16px; line-height: 1.35; color: inherit; cursor: pointer; transition: .2s ease; }
+    #maro-quiz .mq-answer:hover { border-color: #17130f; background: #faf6ee; }
+    #maro-quiz .mq-btn { display: inline-flex; justify-content: center; align-items: center; min-height: 52px; padding: 14px 24px; background: #17130f; color: #fff; border: 0; font-size: 16px; cursor: pointer; transition: opacity .2s ease; text-decoration: none; }
+    #maro-quiz .mq-btn:hover { opacity: .85; }
+    #maro-quiz .mq-btn-secondary { background: transparent; color: #17130f; border: 1px solid #17130f; }
+    #maro-quiz .mq-result-badge { display: inline-block; margin-bottom: 12px; padding: 7px 10px; border: 1px solid #d8c8ae; font-size: 12px; letter-spacing: .1em; text-transform: uppercase; color: #8c7857; }
+    #maro-quiz .mq-note { margin-top: 18px; padding: 14px 16px; background: #f6f0e5; color: #5e5548; font-size: 14px; line-height: 1.45; }
+    #maro-quiz .mq-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 22px; }
+    #maro-quiz .mq-small { font-size: 13px; color: #8c7857; margin-top: 16px; line-height: 1.4; }
+    @media (max-width: 720px) {
+      #maro-quiz .mq-card { padding: 22px; }
+      #maro-quiz .mq-title { font-size: 28px; }
+      #maro-quiz .mq-title-small { font-size: 24px; }
+    }
+  </style>
+
+  <script>
+  (function () {
+    function initMaroQuiz() {
+      var root = document.getElementById('maro-quiz');
+      if (!root) return;
+
+      var config = {
+        intro: {
+          kicker: 'MARO · психологический тест',
+          title: 'Не знаете, какое украшение ваше?',
+          text: '4 вопроса — и мы покажем то, что совпадёт с вашим характером и моментом.',
+          button: 'Пройти тест'
+        },
+        tiePriority: ['minimal', 'romantic', 'classic', 'accent'],
+        questions: [
+          {
+            id: 'moment',
+            title: 'Зачем вы выбираете украшение?',
+            answers: [
+              { label: 'Ищу украшение на каждый день', scores: { minimal: 3, classic: 1 } },
+              { label: 'Собираюсь на вечер или событие', scores: { accent: 3, romantic: 1 } },
+              { label: 'Ищу подарок со смыслом', scores: { classic: 3, romantic: 1 } },
+              { label: 'Хочется чего-то нежного, для настроения', scores: { romantic: 3, accent: 1 } }
+            ]
+          },
+          {
+            id: 'character',
+            title: 'Что вам ближе по характеру?',
+            answers: [
+              { label: 'Лаконичность и чистые линии', scores: { minimal: 3, classic: 1 } },
+              { label: 'Мягкость, нежность, романтика', scores: { romantic: 3, classic: 1 } },
+              { label: 'Смелость и заметность', scores: { accent: 3 } },
+              { label: 'Элегантность и классика', scores: { classic: 3, minimal: 1 } }
+            ]
+          },
+          {
+            id: 'metal',
+            title: 'Какой металл вам ближе?',
+            answers: [
+              { label: 'Серебро или белое золото', scores: { minimal: 2, accent: 1 } },
+              { label: 'Жёлтое золото', scores: { classic: 2, accent: 1 } },
+              { label: 'Розовое золото', scores: { romantic: 2, classic: 1 } },
+              { label: 'Микс металлов, камни, выразительные детали', scores: { accent: 2, romantic: 1 } }
+            ]
+          },
+          {
+            id: 'feeling',
+            title: 'Каким должно быть ваше идеальное украшение?',
+            answers: [
+              { label: 'Лёгким и удобным, чтобы носить не снимая', scores: { minimal: 3 } },
+              { label: 'Нежным, с настроением и смыслом', scores: { romantic: 3 } },
+              { label: 'Заметным, чтобы притягивать взгляды', scores: { accent: 3 } },
+              { label: 'Вечным, элегантным, вне времени', scores: { classic: 3 } }
+            ]
+          }
+        ],
+        results: {
+          minimal: {
+            shortTitle: 'Тихая сила',
+            title: 'Ваш тип — тихая сила',
+            text: 'Вы человек внутренней опоры. Вам не нужно ничего доказывать и демонстрировать: ваша уверенность звучит тихо. Вы цените простоту, ясность и смысл вместо лишнего, а в деталях — лёгкость и точность. Вам комфортно наедине с собой, и вы умеете выбирать то, что действительно ваше. Ваш момент — спокойная уверенность, когда хочется быть собой без лишних слов.'
+          },
+          romantic: {
+            shortTitle: 'Нежная натура',
+            title: 'Ваш тип — нежная натура',
+            text: 'Вы тонко чувствуете настроение — своё и окружающих. Вам важны атмосфера, детали и тепло в мелочах, а красота для вас — способ позаботиться о себе. Вы замечаете то, что другие проходят мимо, и умеете создавать настроение. Ваш момент — когда хочется лёгкости, тепла и немного красоты просто так.'
+          },
+          accent: {
+            shortTitle: 'Яркая натура',
+            title: 'Ваш тип — яркая натура',
+            text: 'Вы не боитесь быть заметной и не любите сливаться с фоном. В вас есть энергия, смелость и желание выражать себя — через образ, слова, поступки. Вам важно, чтобы внешнее совпадало с внутренним настроением, а деталь могла стать высказыванием. Ваш момент — когда хочется быть в центре, действовать и чувствовать себя живой.'
+          },
+          classic: {
+            shortTitle: 'Уверенная классика',
+            title: 'Ваш тип — уверенная классика',
+            text: 'Вы цените надёжность, вкус и проверенные решения. Вам не нужны сиюминутные тренды: вы выбираете то, что останется актуальным и через годы. В вещах, как и в поступках, для вас важны точность, достоинство и уважение к себе. Ваш момент — когда нужна опора и ощущение, что всё сделано правильно и надолго.'
+          }
+        }
+      };
+
+      var state = {
+        step: 'intro',
+        questionIndex: 0,
+        answers: [],
+        scores: null
+      };
+
+      function createEmptyScores() {
+        return { minimal: 0, romantic: 0, accent: 0, classic: 0 };
+      }
+
+      function addScores(scores, factor) {
+        for (var key in scores) {
+          if (Object.prototype.hasOwnProperty.call(state.scores, key)) {
+            state.scores[key] += scores[key] * factor;
+          }
+        }
+      }
+
+      function startQuiz() {
+        state.step = 'question';
+        state.questionIndex = 0;
+        state.answers = [];
+        state.scores = createEmptyScores();
+        render();
+      }
+
+      function restartQuiz() {
+        state.step = 'intro';
+        state.questionIndex = 0;
+        state.answers = [];
+        state.scores = createEmptyScores();
+        render();
+      }
+
+      function chooseAnswer(answer) {
+        state.answers.push(answer);
+        addScores(answer.scores, 1);
+        if (state.questionIndex < config.questions.length - 1) {
+          state.questionIndex += 1;
+          state.step = 'question';
+        } else {
+          state.step = 'result';
+        }
+        render();
+      }
+
+      function goBack() {
+        if (state.step !== 'question' || state.questionIndex === 0 || !state.answers.length) return;
+        var lastAnswer = state.answers.pop();
+        addScores(lastAnswer.scores, -1);
+        state.questionIndex -= 1;
+        render();
+      }
+
+      function getWinners() {
+        var entries = Object.keys(state.scores).map(function (key) { return [key, state.scores[key]]; });
+        entries.sort(function (a, b) {
+          if (b[1] !== a[1]) return b[1] - a[1];
+          return config.tiePriority.indexOf(a[0]) - config.tiePriority.indexOf(b[0]);
+        });
+        var maxScore = entries[0][1];
+        var winners = entries.filter(function (entry) { return entry[1] === maxScore; }).map(function (entry) { return entry[0]; });
+        winners.sort(function (a, b) { return config.tiePriority.indexOf(a) - config.tiePriority.indexOf(b); });
+        return winners;
+      }
+
+      function esc(str) {
+        return String(str)
+          .replace(/&/g, '&amp;')
+          .replace(/</g, '&lt;')
+          .replace(/>/g, '&gt;')
+          .replace(/"/g, '&quot;');
+      }
+
+      function renderIntro() {
+        return '' +
+          '<div class="mq-card">' +
+            '<div class="mq-kicker">' + esc(config.intro.kicker) + '</div>' +
+            '<h2 class="mq-title">' + esc(config.intro.title) + '</h2>' +
+            '<p class="mq-text">' + esc(config.intro.text) + '</p>' +
+            '<button type="button" class="mq-btn" data-action="start">' + esc(config.intro.button) + '</button>' +
+          '</div>';
+      }
+
+      function renderQuestion() {
+        var question = config.questions[state.questionIndex];
+        var total = config.questions.length;
+        var number = state.questionIndex + 1;
+        var progress = Math.round((number / total) * 100);
+        var backButton = state.questionIndex > 0
+          ? '<button type="button" class="mq-link" data-action="back">Назад</button>'
+          : '';
+        var answersHtml = question.answers.map(function (answer, index) {
+          return '<button type="button" class="mq-answer" data-action="answer" data-answer="' + index + '">' + esc(answer.label) + '</button>';
+        }).join('');
+        return '' +
+          '<div class="mq-card">' +
+            '<div class="mq-top">' +
+              '<span class="mq-count">Вопрос ' + number + ' из ' + total + '</span>' +
+              backButton +
+            '</div>' +
+            '<div class="mq-progress"><span style="width:' + progress + '%"></span></div>' +
+            '<h2 class="mq-title mq-title-small">' + esc(question.title) + '</h2>' +
+            '<div class="mq-answers">' + answersHtml + '</div>' +
+          '</div>';
+      }
+
+      function renderResult() {
+        var winners = getWinners();
+        var primary = winners[0];
+        var secondary = winners.slice(1);
+        var result = config.results[primary];
+        var secondaryHtml = secondary.length
+          ? '<div class="mq-note">Вам также близко: ' + secondary.map(function (key) { return esc(config.results[key].shortTitle); }).join(', ') + '.</div>'
+          : '';
+        return '' +
+          '<div class="mq-card">' +
+            '<div class="mq-result-badge">Ваш результат</div>' +
+            '<h2 class="mq-title">' + esc(result.title) + '</h2>' +
+            '<p class="mq-text">' + esc(result.text) + '</p>' +
+            secondaryHtml +
+            '<div class="mq-actions">' +
+              '<button type="button" class="mq-btn mq-btn-secondary" data-action="restart">Пройти ещё раз</button>' +
+            '</div>' +
+            '<div class="mq-small">Тест носит развлекательный характер и не является профессиональной психодиагностикой.</div>' +
+          '</div>';
+      }
+
+      function render() {
+        if (state.step === 'intro') root.innerHTML = renderIntro();
+        else if (state.step === 'question') root.innerHTML = renderQuestion();
+        else root.innerHTML = renderResult();
+      }
+
+      root.addEventListener('click', function (event) {
+        var target = event.target.closest('[data-action]');
+        if (!target || !root.contains(target)) return;
+        var action = target.getAttribute('data-action');
+        if (action === 'start') startQuiz();
+        if (action === 'restart') restartQuiz();
+        if (action === 'back') goBack();
+        if (action === 'answer') {
+          var answerIndex = parseInt(target.getAttribute('data-answer'), 10);
+          var question = config.questions[state.questionIndex];
+          if (question && question.answers[answerIndex]) chooseAnswer(question.answers[answerIndex]);
+        }
+      });
+
+      state.scores = createEmptyScores();
+      render();
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initMaroQuiz);
+    } else {
+      initMaroQuiz();
+    }
+  })();
+  </script>
+
   <footer class="site-footer">
     <div class="container footer-grid">
       <div class="footer-brand">
@@ -421,7 +682,7 @@
         <a href="#philosophy">О бренде</a>
         <a href="#promises">Обещания M.A.R.O.</a>
         <a href="#collection">Галерея</a>
-        <a href="#quiz-open" id="footer-quiz">Пройти тест</a>
+        <a href="#quiz">Пройти тест</a>
       </div>
     </div>
     <div class="container footer-bottom">
@@ -453,27 +714,6 @@
         <p class="form-note">Нажимая кнопку, вы соглашаетесь на обработку данных.</p>
       </form>
       <p class="form-success" id="signup-success" hidden>Заявка отправлена! Мы свяжемся с вами в течение часа. ✦</p>
-    </div>
-  </div>
-
-  <div class="modal" id="quiz-modal" aria-hidden="true">
-    <div class="modal-backdrop" data-close></div>
-    <div class="modal-body" role="dialog" aria-modal="true" aria-labelledby="quiz-title">
-      <button class="modal-close" type="button" data-close aria-label="Закрыть">✕</button>
-      <span class="kicker">Тест</span>
-      <h3 id="quiz-title">Что бы выбрал ты?</h3>
-      <div class="quiz" id="quiz">
-        <div class="quiz-progress"><div class="quiz-progress-bar" id="quiz-bar"></div></div>
-        <p class="quiz-question" id="quiz-question"></p>
-        <div class="quiz-options" id="quiz-options"></div>
-        <div class="quiz-result" id="quiz-result" hidden>
-          <h4>Ваш тип: <span id="quiz-type"></span></h4>
-          <p id="quiz-desc"></p>
-          <p class="quiz-outro">Результат и подборка 3 изделий придут в Telegram.</p>
-          <a href="https://t.me/juliya_maro" target="_blank" rel="noopener" class="btn btn-dark btn-block">Отправить результат в Telegram</a>
-          <button type="button" class="btn btn-line btn-block" data-close>Закрыть</button>
-        </div>
-      </div>
     </div>
   </div>
 
