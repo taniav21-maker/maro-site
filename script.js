@@ -9,7 +9,7 @@
    * нужно один раз перейти по ссылке из него, после чего письма будут приходить.
    */
   var CONFIG = {
-    sheetsUrl: 'https://script.google.com/macros/s/AKfycbwVhvPY-y2NNfQvJ4sU6au-MhwCrMh9pi55ONX1H_jlEWWBk-RHjfrcmELAPm_Z7REE/exec',
+    sheetsUrl: 'https://script.google.com/macros/s/AKfycbxPSNMkZzspDhGBvvGYprFolUsAu4nzGYgNOiKA8pRiYsJbXrHO8d9Z9C_6FGqkzmtr/exec',
     emailTo: 'tambov-21@yandex.ru'
   };
 
