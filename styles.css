@@ -244,18 +244,14 @@ h1 em, h2 em { color: var(--accent); }
 
 .hero-photo figure {
   position: relative;
-  height: min(72vh, 640px);
-  aspect-ratio: 576 / 1280;
   max-width: 100%;
-  margin-inline: auto;
-  overflow: hidden;
+  margin: 0;
 }
 
 .hero-photo img {
   width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center;
+  height: auto;
+  display: block;
 }
 
 .hero-photo::after {
@@ -1177,8 +1173,7 @@ h1 em, h2 em { color: var(--accent); }
   .nav-links { display: none; }
   .nav-cta { padding: 9px 16px; }
   .hero { padding: 64px 0 0; }
-  .hero-photo figure { height: 56vh; }
-  .hero-caption { flex-direction: column; gap: 8px; text-align: center; width: 90%; }
+  .hero-caption { flex-direction: column; gap: 8px; text-align: center; width: 90%; margin-inline: auto; }
   .caption-line { display: none; }
   .cats-grid { grid-template-columns: 1fr; gap: 34px; }
   .feature-band { height: 70vh; }
