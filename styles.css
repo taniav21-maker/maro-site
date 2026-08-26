@@ -1205,7 +1205,7 @@ h1 em, h2 em { color: var(--accent); }
   .hero-sub { font-size: 15px; }
   .hero-photo { margin-top: 64px; }
   .hero-photo img { height: 56vw; min-height: 220px; object-fit: cover; object-position: top center; }
-  .hero-caption { bottom: auto; top: 16px; flex-direction: column; gap: 6px; text-align: center; width: 90%; margin-inline: auto; background: rgba(250,246,239,0.85); padding: 8px 12px; border-radius: 8px; }
+  .hero-caption { bottom: 0; top: auto; flex-direction: column; gap: 4px; text-align: center; width: 90%; margin-inline: auto; background: rgba(250,246,239,0.85); padding: 6px 10px; border-radius: 6px; font-size: 11px; }
   .caption-line { display: none; }
   .cats-grid { grid-template-columns: 1fr; gap: 34px; }
   .video-frame { border-radius: 0; }
