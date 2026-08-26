@@ -473,64 +473,23 @@ h1 em, h2 em { color: var(--accent); }
 .phil-item p { color: var(--ink-soft); font-size: 14.5px; }
 
 /* ===== Feature band (parallax) ===== */
-.feature-band {
-  position: relative;
-  margin: 40px 0 0;
-  overflow: hidden;
-  height: min(80vh, 560px);
-  display: grid;
-  place-items: center;
-}
+/* ===== Story Video ===== */
+.section-story { padding: 108px 0 0; }
+.section-story .section-sub { font-size: 17px; color: var(--ink-soft); margin-top: 18px; }
 
-.feature-bg {
-  position: absolute;
-  inset: -24px 0;
-  overflow: hidden;
-}
-
-.feature-bg img {
+.story-video {
+  margin-top: 48px;
   width: 100%;
-  height: 100%;
+  max-height: 600px;
+  overflow: hidden;
+}
+
+.story-video video {
+  width: 100%;
+  height: auto;
+  max-height: 600px;
   object-fit: cover;
-  filter: saturate(0.85) brightness(0.72);
-  will-change: transform;
-}
-
-.feature-band::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(180deg, rgba(34, 26, 18, 0.3), rgba(34, 26, 18, 0.55));
-}
-
-.feature-inner {
-  position: relative;
-  z-index: 2;
-  text-align: center;
-  color: var(--paper);
-  padding: 40px 0;
-}
-
-.feature-rule {
   display: block;
-  width: 56px; height: 2px;
-  background: var(--gold);
-  margin: 0 auto 34px;
-}
-
-.feature-inner blockquote {
-  font-size: clamp(24px, 3.4vw, 42px);
-  line-height: 1.3;
-  margin-bottom: 26px;
-}
-
-.feature-inner blockquote em { color: var(--gold); }
-
-.feature-author {
-  font-size: 12px;
-  letter-spacing: 0.28em;
-  text-transform: uppercase;
-  color: rgba(255, 253, 249, 0.85);
 }
 
 /* ===== Promises ===== */
@@ -1199,7 +1158,7 @@ h1 em, h2 em { color: var(--accent); }
   .hero-caption { flex-direction: column; gap: 8px; text-align: center; width: 90%; margin-inline: auto; }
   .caption-line { display: none; }
   .cats-grid { grid-template-columns: 1fr; gap: 34px; }
-  .feature-band { height: 70vh; }
+  .story-video video { max-height: 360px; }
   .offer-inner h2 br { display: none; }
   .quiz-block { padding: 60px 24px; }
   .newsletter-form input { min-width: 100%; text-align: center; }
