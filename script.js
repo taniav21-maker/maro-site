@@ -260,4 +260,37 @@
       window.scrollTo({ top: top, behavior: prefersReduced ? 'auto' : 'smooth' });
     });
   });
+
+  /* ===== Video Sound ===== */
+  var vf = document.querySelector('.video-frame');
+  if (vf) {
+    var vid = vf.querySelector('video');
+    var vSoundOn = false;
+
+    vf.addEventListener('click', function () {
+      vSoundOn = !vSoundOn;
+      vid.muted = !vSoundOn;
+      if (vSoundOn) {
+        vid.currentTime = 0;
+        vid.play();
+        vf.classList.add('playing');
+      } else {
+        vf.classList.remove('playing');
+      }
+    });
+
+    vf.addEventListener('keydown', function (e) {
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); vf.click(); }
+    });
+
+    if (!prefersReduced) {
+      var vObs = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting && !vSoundOn) { vid.play(); vf.classList.remove('playing'); }
+          else if (!entry.isIntersecting) { vid.pause(); }
+        });
+      }, { threshold: 0.3 });
+      vObs.observe(vf);
+    }
+  }
 })();

@@ -474,23 +474,69 @@ h1 em, h2 em { color: var(--accent); }
 
 /* ===== Feature band (parallax) ===== */
 /* ===== Story Video ===== */
-.section-story { padding: 108px 0 0; }
+.section-story { padding: 108px 0; }
 .section-story .section-sub { font-size: 17px; color: var(--ink-soft); margin-top: 18px; }
 
 .story-video {
   margin-top: 48px;
-  width: 100%;
-  max-height: 600px;
-  overflow: hidden;
+  max-width: 420px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
-.story-video video {
+.video-frame {
+  position: relative;
   width: 100%;
-  height: auto;
-  max-height: 600px;
+  aspect-ratio: 16/9;
+  border-radius: 14px;
+  overflow: hidden;
+  cursor: pointer;
+  background: #111;
+}
+
+.video-frame video {
+  width: 100%;
+  height: 100%;
   object-fit: cover;
   display: block;
 }
+
+.video-play-hint {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: rgba(3, 48, 26, 0.45);
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+}
+
+.video-play-icon {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background: var(--paper);
+  color: var(--brand-green);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+  padding-left: 4px;
+  box-shadow: 0 8px 28px rgba(0,0,0,0.3);
+}
+
+.video-play-text {
+  margin-top: 14px;
+  font-size: 13px;
+  letter-spacing: 0.04em;
+  color: var(--paper);
+  text-shadow: 0 1px 4px rgba(0,0,0,0.5);
+}
+
+.video-frame.playing .video-play-hint { opacity: 0; }
+.video-frame:not(.playing) video { pointer-events: none; }
 
 /* ===== Promises ===== */
 .promise-grid {
@@ -1158,7 +1204,7 @@ h1 em, h2 em { color: var(--accent); }
   .hero-caption { flex-direction: column; gap: 8px; text-align: center; width: 90%; margin-inline: auto; }
   .caption-line { display: none; }
   .cats-grid { grid-template-columns: 1fr; gap: 34px; }
-  .story-video video { max-height: 360px; }
+  .video-frame { border-radius: 0; }
   .offer-inner h2 br { display: none; }
   .quiz-block { padding: 60px 24px; }
   .newsletter-form input { min-width: 100%; text-align: center; }
