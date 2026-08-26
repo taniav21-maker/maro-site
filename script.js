@@ -185,11 +185,11 @@
 
   /* ===== Галереи категорий (лайтбокс) ===== */
   var GALLERIES = {
-    'braslety': { title: 'Браслеты', photos: ['img/gal/braslety/IMG_1706.jpg', 'img/gal/braslety/IMG_1707.jpg', 'img/gal/braslety/IMG_1708.jpg'] },
-    'kolye-tsepochki': { title: 'Колье и цепочки', photos: ['img/gal/kolye-tsepochki/IMG_1702.jpg', 'img/gal/kolye-tsepochki/IMG_1703.jpg', 'img/gal/kolye-tsepochki/IMG_1704.jpg', 'img/gal/kolye-tsepochki/IMG_1705.jpg'] },
-    'koltsa-sergi': { title: 'Кольца и серьги', photos: ['img/gal/koltsa-sergi/IMG_1709.jpg', 'img/gal/koltsa-sergi/IMG_1710.jpg', 'img/gal/koltsa-sergi/IMG_1712.jpg'] },
+    'braslety': { title: 'Браслеты', photos: ['img/gal/braslety/IMG_1706.jpg', 'img/gal/braslety/IMG_1707.jpg', 'img/gal/braslety/IMG_1708.jpg', 'img/gal/braslety/IMG_1738.jpg', 'img/gal/braslety/IMG_1739.jpg'] },
+    'kolye-tsepochki': { title: 'Колье и цепочки', photos: ['img/gal/kolye-tsepochki/IMG_1702.jpg', 'img/gal/kolye-tsepochki/IMG_1703.jpg', 'img/gal/kolye-tsepochki/IMG_1704.jpg', 'img/gal/kolye-tsepochki/IMG_1705.jpg', 'img/gal/kolye-tsepochki/IMG_1741.jpg'] },
+    'koltsa-sergi': { title: 'Кольца и серьги', photos: ['img/gal/koltsa-sergi/IMG_1710.jpg', 'img/gal/koltsa-sergi/IMG_1712.jpg', 'img/gal/koltsa-sergi/IMG_1743.jpg'] },
     'muzhskie-aksessuary': { title: 'Мужские аксессуары', photos: ['img/gal/muzhskie-aksessuary/IMG_1715.jpg', 'img/gal/muzhskie-aksessuary/IMG_1716.jpg', 'img/gal/muzhskie-aksessuary/IMG_1717.jpg', 'img/gal/muzhskie-aksessuary/IMG_1718.jpg', 'img/gal/muzhskie-aksessuary/IMG_1719.jpg'] },
-    'podvesy': { title: 'Подвесы', photos: ['img/gal/podvesy/IMG_1713.jpg'] },
+    'podvesy': { title: 'Подвесы', photos: ['img/gal/podvesy/IMG_1713.jpg', 'img/gal/podvesy/IMG_1740.jpg'] },
     'chetki': { title: 'Чётки', photos: ['img/gal/chetki/IMG_1699.jpg', 'img/gal/chetki/IMG_1700.jpg', 'img/gal/chetki/IMG_1701.jpg'] }
   };
 
