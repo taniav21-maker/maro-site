@@ -475,6 +475,12 @@ h1 em, h2 em { color: var(--accent); }
 /* ===== Feature band (parallax) ===== */
 /* ===== Story Video ===== */
 .section-story { padding: 108px 0; }
+
+/* ===== VK Band ===== */
+.vk-band { padding: 0 0 108px; }
+.vk-band-inner { text-align: center; }
+.vk-band-inner h2 { margin-bottom: 40px; }
+.vk-actions { display: flex; justify-content: center; flex-wrap: wrap; gap: 18px; }
 .section-story .section-sub { font-family: var(--serif); font-size: clamp(28px, 4vw, 48px); color: var(--accent); margin-top: 18px; font-style: italic; line-height: 1.18; }
 
 .story-video {
